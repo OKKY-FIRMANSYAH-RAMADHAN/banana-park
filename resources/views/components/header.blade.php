@@ -15,12 +15,12 @@
     $currentRoute = Route::currentRouteName();
 @endphp
 
-<header x-data="{ open: false }" class="bg-yellow-300 shadow-sm sticky top-0 z-50">
+<header x-data="{ open: false }" class="bg-[#edc743] shadow-sm sticky top-0 z-50">
     <div class="container mx-auto flex items-center justify-between px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-2">
         {{-- Logo --}}
         <div class="flex items-center gap-2 font-bold text-base sm:text-lg md:text-base lg:text-lg">
-            <img src="{{ asset('assets/images/logo-banana.png') }}" alt="Banana Icon" class="w-10 sm:w-6 md:w-7 lg:w-10 xl:w-12" />
-            <span class="text-gray-800 text-base md:text-sm lg:text-xl">Banana Park</span>
+            <img src="{{ asset('assets/images/logo-banana.png') }}" alt="Banana Icon" class="w-5 sm:w-6 md:w-7 lg:w-10 xl:w-12" />
+            <span class="text-gray-800">Banana Park</span>
         </div>
 
         {{-- Hamburger Button (Mobile) --}}
@@ -42,8 +42,8 @@
             @foreach ($menus as $menu)
                 <a
                     href="{{ route($menu['route']) }}"
-                    class="px-1 md:px-2 lg:px-2 xl:px-3 py-1 md:py-1 rounded-full whitespace-nowrap text-center
-                        {{ $currentRoute === $menu['route'] ? 'bg-white text-black font-bold' : 'hover:bg-yellow-400 transition' }} "
+                    class="px-1 md:px-1 lg:px-2 xl:px-3 py-1 md:py-1 rounded-full whitespace-nowrap text-center
+                        {{ $currentRoute === $menu['route'] ? 'bg-white text-black font-bold' : 'hover:bg-white transition' }} "
                 >
                     {{ $menu['label'] }}
                 </a>
@@ -57,7 +57,7 @@
             <a
                 href="{{ route($menu['route']) }}"
                 class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700
-                    {{ $currentRoute === $menu['route'] ? 'bg-white text-black font-bold' : 'hover:bg-yellow-400 transition' }}"
+                    {{ $currentRoute === $menu['route'] ? 'bg-white text-black font-bold' : 'hover:bg-white transition' }}"
             >
                 {{ $menu['label'] }}
             </a>

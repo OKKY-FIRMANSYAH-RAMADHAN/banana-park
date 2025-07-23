@@ -1,4 +1,4 @@
-<footer class="bg-yellow-300 text-black text-sm mt-16">
+<footer class="bg-[#edc743] text-black text-sm mt-16">
     <div class="container mx-auto px-4 sm:px-6 py-8 sm:py-10 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
         
         {{-- Kolom 1: Tautan --}}
@@ -20,15 +20,15 @@
             <h3 class="text-base sm:text-lg font-semibold mb-2 sm:mb-3">Kontak</h3>
             <div class="space-y-2">
                 <div class="flex items-start gap-2">
-                    <span class="text-sm">📌</span>
+                    <span class="text-sm"><i class="fa-solid fa-map-location-dot"></i></span>
                     <p class="text-xs sm:text-sm leading-relaxed">Jl. Mastrip IX, Warugunung, Kec. Karangpilang, Surabaya</p>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span class="text-sm">📷</span>
+                    <span class="text-sm"><i class="fa-brands fa-instagram"></i></span>
                     <p class="text-xs sm:text-sm">banana_park_Surabaya</p>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span class="text-sm">📞</span>
+                    <span class="text-sm"><i class="fa-solid fa-phone"></i></span>
                     <p class="text-xs sm:text-sm">0857 - 3097 - 3326</p>
                 </div>
             </div>

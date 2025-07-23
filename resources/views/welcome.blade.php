@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda - Banana Park</title>
     @vite(['resources/css/app.css'])
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('assets/images/site.webmanifest') }}">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="bg-white">
@@ -65,7 +71,7 @@
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 text-sm text-center">
                 @php
                     $fasilitas = [
-                        ['img' => 'fasilitas/gapura.png', 'text' => 'Gapura berbentuk pisang'],
+                        ['img' => 'fasilitas/gapura.png', 'text' => 'Tugu Pisang'],
                         ['img' => 'fasilitas/gazebo.png', 'text' => 'Gazebo warga'],
                         ['img' => 'fasilitas/playground.png', 'text' => 'Playground anak-anak'],
                         ['img' => 'fasilitas/kolam-ikan.png', 'text' => 'Kolam ikan'],
