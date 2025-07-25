@@ -13,6 +13,10 @@
     <link rel="manifest" href="{{ asset('assets/images/site.webmanifest') }}">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @php
+        use Illuminate\Support\Str;
+        use Illuminate\Support\Facades\Storage;
+    @endphp
 </head>
 
 <body class="bg-white">
@@ -69,24 +73,18 @@
         <div class="space-y-4">
             <h2 class="text-[22px] font-bold">Fasilitas Utama</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 text-sm text-center">
-                @php
-                    $fasilitas = [
-                        ['img' => 'fasilitas/gapura.png', 'text' => 'Tugu Pisang'],
-                        ['img' => 'fasilitas/gazebo.png', 'text' => 'Gazebo warga'],
-                        ['img' => 'fasilitas/playground.png', 'text' => 'Playground anak-anak'],
-                        ['img' => 'fasilitas/kolam-ikan.png', 'text' => 'Kolam ikan'],
-                        ['img' => 'fasilitas/kebun-pisang.png', 'text' => 'Kebun pisang & sayur'],
-                        ['img' => 'fasilitas/hidroponik.png', 'text' => 'Taman Hidroponik'],
-                        ['img' => 'fasilitas/pasar-tempo-doloe.png', 'text' => 'Pasar Tempo Doloe'],
-                    ];
-                @endphp
-
                 @foreach ($fasilitas as $item)
                     <div class="flex flex-col items-center">
                         <div class="rounded-md overflow-hidden w-full h-full">
-                            <img src="{{ asset('assets/images/' . $item['img']) }}" class="object-cover w-full h-full" alt="{{ $item['text'] }}" />
+                            @if (Str::startsWith($item->gambar, 'http'))
+                                <img src="{{ $item->gambar }}" class="object-cover w-full h-full" alt="{{ $item->judul }}" />
+                            @elseif ($item->gambar && !Str::contains($item->gambar, '/'))
+                                <img src="{{ asset('assets/images/fasilitas/' . $item->gambar) }}" class="object-cover w-full h-full" alt="{{ $item->judul }}" />
+                            @else
+                                <img src="{{ Storage::disk('public')->url($item->gambar) }}" class="object-cover w-full h-full" alt="{{ $item->judul }}" />
+                            @endif
                         </div>
-                        <p class="mt-2 font-medium text-sm">{{ $item['text'] }}</p>
+                        <p class="mt-2 font-medium text-sm">{{ $item->judul }}</p>
                     </div>
                 @endforeach
             </div>
