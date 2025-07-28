@@ -1,29 +1,14 @@
-<!DOCTYPE html>
-<html lang="id">
+@extends('layout')
+@section('title', 'Dukung Kami')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dukung Kami - Banana Park</title>
-    @vite(['resources/css/app.css'])
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('assets/images/site.webmanifest') }}">
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body class="bg-white text-gray-800">
-    <x-header />
+@section('content')
 
     <main class="px-5 md:px-12 lg:px-32 xl:px-64 py-8 space-y-4">
         {{-- Judul --}}
         <h1 class="text-2xl md:text-3xl font-bold">Dukung Kami</h1>
 
         {{-- Gambar --}}
-        <img src="{{ asset('assets/images/dukung-kami.png') }}" alt="Dukung Kami Banana Park" class="w-full rounded-xl shadow-md object-cover p-5" />
+        <img src="{{ asset('assets/images/dukung-kami.png') }}" alt="Dukung Kami Banana Park" class="w-full rounded-xl" />
 
         {{-- Deskripsi --}}
         <p class="text-sm md:text-base leading-relaxed">
@@ -61,10 +46,29 @@
         <div class="pt-8">
             <h2 class="text-xl md:text-2xl font-semibold mb-4">Saran dan Masukan</h2>
 
-            <form class="space-y-4 max-w-xl">
-                <input type="text" placeholder="Nama Anda" class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-                <input type="email" placeholder="Email Anda" class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400">
-                <textarea rows="4" placeholder="Pesan" class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
+            @if (session('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            <form action="{{ route('saran.store') }}" method="POST" class="space-y-4 max-w-xl">
+                @csrf
+                <input type="text" name="nama" placeholder="Nama Anda" class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 @error('nama') border-red-500 @enderror" value="{{ old('nama') }}" required>
+                @error('nama')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+
+                <input type="email" name="email" placeholder="Email Anda" class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 @error('email') border-red-500 @enderror" value="{{ old('email') }}" required>
+                @error('email')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+
+                <textarea name="pesan" rows="4" placeholder="Pesan" class="w-full border border-gray-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-yellow-400 @error('pesan') border-red-500 @enderror" required>{{ old('pesan') }}</textarea>
+                @error('pesan')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+
                 <button type="submit" class="bg-yellow-400 hover:bg-yellow-500 text-white font-semibold py-2 px-6 rounded-full">
                     Kirim
                 </button>
@@ -72,7 +76,4 @@
         </div>
     </main>
 
-    <x-footer />
-</body>
-
-</html>
+@endsection

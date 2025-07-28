@@ -24,6 +24,8 @@ class ProgramResource extends Resource
     protected static ?string $navigationGroup = 'Konten';
     
     protected static ?int $navigationSort = 4;
+    
+    protected static ?string $pluralModelLabel = 'Program';
 
     public static function form(Form $form): Form
     {

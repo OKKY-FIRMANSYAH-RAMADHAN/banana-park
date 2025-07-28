@@ -1,29 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beranda - Banana Park</title>
-    @vite(['resources/css/app.css'])
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('assets/images/site.webmanifest') }}">
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    @php
-        use Illuminate\Support\Str;
-        use Illuminate\Support\Facades\Storage;
-    @endphp
-</head>
+@section('title', 'Beranda')
 
-<body class="bg-white">
-
-    <x-header />
-
-    {{-- Halaman Beranda --}}
+@section('content')
     <section class="px-5 md:px-12 lg:px-32 xl:px-64 py-8 space-y-12">
 
         {{-- Hero Section --}}
@@ -75,13 +54,14 @@
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 text-sm text-center">
                 @foreach ($fasilitas as $item)
                     <div class="flex flex-col items-center">
-                        <div class="rounded-md overflow-hidden w-full h-full">
+                        <div class="rounded-md overflow-hidden w-full h-full relative group cursor-pointer">
+                            <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300 z-10"></div>
                             @if (Str::startsWith($item->gambar, 'http'))
-                                <img src="{{ $item->gambar }}" class="object-cover w-full h-full" alt="{{ $item->judul }}" />
+                                <img src="{{ $item->gambar }}" class="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110" alt="{{ $item->judul }}" />
                             @elseif ($item->gambar && !Str::contains($item->gambar, '/'))
-                                <img src="{{ asset('assets/images/fasilitas/' . $item->gambar) }}" class="object-cover w-full h-full" alt="{{ $item->judul }}" />
+                                <img src="{{ asset('assets/images/fasilitas/' . $item->gambar) }}" class="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110" alt="{{ $item->judul }}" />
                             @else
-                                <img src="{{ Storage::disk('public')->url($item->gambar) }}" class="object-cover w-full h-full" alt="{{ $item->judul }}" />
+                                <img src="{{ Storage::disk('public')->url($item->gambar) }}" class="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110" alt="{{ $item->judul }}" />
                             @endif
                         </div>
                         <p class="mt-2 font-medium text-sm">{{ $item->judul }}</p>
@@ -157,8 +137,4 @@
         </div>
 
     </section>
-
-    <x-footer />
-
-</body>
-</html>
+@endsection

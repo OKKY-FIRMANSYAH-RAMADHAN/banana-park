@@ -79,8 +79,6 @@ class FasilitasResource extends Resource
                     ->boolean()
                     ->sortable(),
                     
-
-                    
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Dibuat')
                     ->dateTime('d M Y')

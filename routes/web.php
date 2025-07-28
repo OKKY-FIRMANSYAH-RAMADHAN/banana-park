@@ -9,4 +9,5 @@ Route::get('/program', [\App\Http\Controllers\ProgramController::class, 'index']
 Route::view('/komunitas', 'komunitas')->name('komunitas');
 Route::view('/kegiatan', 'kegiatan')->name('kegiatan');
 Route::view('/dampak', 'dampak')->name('dampak');
-Route::view('/dukung-kami', 'dukungkami')->name('dukungan');
+Route::get('/dukung-kami', [\App\Http\Controllers\SaranController::class, 'index'])->name('dukungan');
+Route::post('/saran', [\App\Http\Controllers\SaranController::class, 'store'])->name('saran.store');
