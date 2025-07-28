@@ -6,7 +6,7 @@ use App\Filament\Resources\SaranResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListSarans extends ListRecords
+class ListSaran extends ListRecords
 {
     protected static string $resource = SaranResource::class;
     

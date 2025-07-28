@@ -100,7 +100,7 @@ class SaranResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSarans::route('/'),
+            'index' => Pages\ListSaran::route('/'),
             'create' => Pages\CreateSaran::route('/create'),
             'edit' => Pages\EditSaran::route('/{record}/edit'),
         ];
